@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Navbar from 'react-bootstrap/Navbar';
 import RestaurantPreview from './RestaurantPreview';
+import SubmitReview from './SubmitReview';
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,26 +27,28 @@ var routes = [
 		path: '/profile',
 		main: () => <Profile/>
 	},
-
+  {
+		path: '/reviews',
+		main: () => <Reviews/>
+	},
 ]
 export default function NavigationBar() {
   return (
     <Router>
       <div>
-      <>
 				<Navbar>
           <Navbar.Brand>Gopher-A-Bite</Navbar.Brand>
           <Nav>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
             <Nav.Link href="/profile">My Profile</Nav.Link>
+            <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
           </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search for a restaurant" className="mr-sm-2" />
           <Button >Search</Button>
         </Form>
         </Navbar>
-        </>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
@@ -75,4 +78,7 @@ function Nearby() {
 
 function Profile() {
   return <h2>Profile</h2>;
+}
+function Reviews() {
+  return <SubmitReview/>;
 }
