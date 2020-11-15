@@ -22,7 +22,7 @@ class AltPreview extends Component {
                     <Nav.Link href="#first">Menu</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link href="#first">Something else</Nav.Link>
+                    <Nav.Link href="#review">Reviews</Nav.Link>
                 </Nav.Item>
                 </Nav>
             </Card.Header>

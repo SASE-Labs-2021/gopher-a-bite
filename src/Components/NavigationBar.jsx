@@ -15,6 +15,7 @@ class NavigationBar extends Component {
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#nearby">What's Nearby?</Nav.Link>
             <Nav.Link href="#profile">My Profile</Nav.Link>
+            <Nav.Link href="#reviews">Submit a Review!</Nav.Link>
           </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search for a restaurant" className="mr-sm-2" />
