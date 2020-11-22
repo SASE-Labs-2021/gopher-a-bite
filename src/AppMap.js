@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {
-  Map,
-  Polyline,
+	MapContainer,
   TileLayer,
   Marker,
   Popup
@@ -26,8 +25,8 @@ export default class AppMap extends Component {
 	async componentWillMount() {
 		// urls for the direction jsons
 		var marker_urls;
-		const names = await getData('https://github.com/SASE-Labs-2021/gopher-a-bite/api/restNames.json');
-		marker_urls = Object.values(names).map(name => 'https://github.com/SASE-Labs-2021/gopher-a-bite/api/popUpInfo/' + name + '.json');
+		const names = await getData('/ids');
+		marker_urls = Object.values(names).map(name => '/restaurants/<id>');
 		marker_urls.forEach(url => {
 			return fetch(url)
 			.then(response => response.json())
@@ -51,26 +50,25 @@ export default class AppMap extends Component {
 		return (
 			<Tabs defaultActiveKey='map' variant='pills'>
 				<Tab eventKey='map' title={this.props.start === 'null' ? 'All Buildings and Paths' : `${this.props.start} to ${this.props.end}`}>
-					<Map center={[44.981108, -93.235258]} zoom={25}>
+					<MapContainer center={[44.981108, -93.235258]} zoom={25}>
 						<TileLayer
    		       			attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
    		       			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
    		     		/>
 						{this.state.markerData.map(json => {
 							return (
-								<Marker position={[json.location.latitude, json.location.longitude]}>
+								<Marker position={[json.latitude, json.longitude]}>
 									<Popup>
 										<h3>{json.restaurant}</h3>
-										{json.info.rating ? <h5 style={{ 'white-space': 'pre-line' }}>{json.info.rating}<br/><br/></h5> : null}
-										{json.info.desc ? <h7 style={{ 'white-space': 'pre-line' }}>{json.info.desc}<br/><br/></h7> : null}
-										{json.info.address ? <h7 style={{ 'white-space': 'pre-line' }}>{json.info.address}<br/><br/></h7> : null}
-										{json.info.hours ? <h7 style={{ 'white-space': 'pre-line' }}>{json.info.hours}<br/><br/></h7> : null}
-										{json.info.link ? <a href="json.info.link"><h7 style={{ 'white-space': 'pre-line' }}>{json.info.link}<br/><br/></h7></a> : null}
+										{json.desc ? <h7 style={{ 'white-space': 'pre-line' }}>{json.desc}<br/><br/></h7> : null}
+										{json.address ? <h7 style={{ 'white-space': 'pre-line' }}>{json.address}<br/><br/></h7> : null}
+										{json.hours ? <h7 style={{ 'white-space': 'pre-line' }}>{json.hours}<br/><br/></h7> : null}
+										{json.link ? <a href="json.info.link"><h7 style={{ 'white-space': 'pre-line' }}>{json.link}<br/><br/></h7></a> : null}
 									</Popup>
 								</Marker>
 							);
 						})}
-					</Map>
+					</MapContainer>
 				</Tab>
 			</Tabs>
 		);
