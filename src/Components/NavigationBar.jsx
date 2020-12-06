@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
@@ -8,12 +9,15 @@ import RestaurantPreview from './RestaurantPreview';
 import SubmitReview from './SubmitReview';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import MyProfile from './MyProfile';
+import PastReviews from './PastReview';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
 export default function NavigationBar() {
   return (
     <Router>
@@ -24,8 +28,8 @@ export default function NavigationBar() {
           <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
             <Nav.Link href="/profile">My Profile</Nav.Link>
-            <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
-            
+            <Nav.Link href="/submit_reviews">Submit a Review!</Nav.Link>
+            <Nav.Link href="/reviews">Current Reviews</Nav.Link>
           </Nav>
         </Navbar>
         {/* A <Switch> looks through its children <Route>s and
@@ -46,6 +50,7 @@ export default function NavigationBar() {
     </Router>
   );
 }
+
 var routes = [
 	{
 		path: '/',
@@ -61,9 +66,13 @@ var routes = [
 		main: () => <Profile/>
 	},
   {
-		path: '/reviews',
+		path: '/submit_reviews',
 		main: () => <Reviews/>
-	},
+  },
+  {
+    path: '/reviews',
+    main: () => <CurrentReviews/>
+  }
 ]
 
 function Home() {
@@ -79,4 +88,7 @@ function Profile() {
 }
 function Reviews() {
   return <SubmitReview/>;
+}
+function CurrentReviews() {
+  return <PastReviews/>;
 }
