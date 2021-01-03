@@ -24,6 +24,31 @@ flask run
 cd ..
 npm install
 npm start
+
+```
+### For Windows
+#### In one Terminal
+***Navigate to api folder***
+##### For first time
+```
+py -m venv env
+```
+##### Otherwise
+```
+env\Scripts\activate.bat
+pip install -r requirements.txt
+flask run
+```
+#### In one Terminal
+***Navigate to repo folder***
+##### For first time
+```
+npm install
+```
+##### Otherwise
+```
+npm start
+
 ```
 
 ## Contributing
