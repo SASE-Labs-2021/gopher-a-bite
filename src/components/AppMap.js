@@ -26,7 +26,8 @@ export default class AppMap extends Component {
 		// urls for the direction jsons
 		var marker_urls;
 		const names = await getData('/ids');
-		marker_urls = Object.values(names).map(name => '/restaurants/<id>');
+		marker_urls = Object.values(names).map(name => '/restaurants/'+name);
+		console.log(marker_urls)
 		marker_urls.forEach(url => {
 			return fetch(url)
 			.then(response => response.json())
@@ -49,7 +50,7 @@ export default class AppMap extends Component {
 		}
 		return (
 			<Tabs defaultActiveKey='map' variant='pills'>
-				<Tab eventKey='map' title={this.props.start === 'null' ? 'All Buildings and Paths' : `${this.props.start} to ${this.props.end}`}>
+				<Tab eventKey='map'>
 					<MapContainer center={[44.981108, -93.235258]} zoom={25}>
 						<TileLayer
    		       			attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -63,7 +64,7 @@ export default class AppMap extends Component {
 										{json.desc ? <h7 style={{ 'white-space': 'pre-line' }}>{json.desc}<br/><br/></h7> : null}
 										{json.address ? <h7 style={{ 'white-space': 'pre-line' }}>{json.address}<br/><br/></h7> : null}
 										{json.hours ? <h7 style={{ 'white-space': 'pre-line' }}>{json.hours}<br/><br/></h7> : null}
-										{json.link ? <a href="json.info.link"><h7 style={{ 'white-space': 'pre-line' }}>{json.link}<br/><br/></h7></a> : null}
+										{json.link ? <a href={json.link}><h7 style={{ 'white-space': 'pre-line' }}>{json.link}<br/><br/></h7></a> : null}
 									</Popup>
 								</Marker>
 							);

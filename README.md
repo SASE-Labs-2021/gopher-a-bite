@@ -28,7 +28,7 @@ npm start
 ```
 ### For Windows
 #### In one Terminal
-***Navigate to api folder***
+##### ***Navigate to api folder***
 ##### For first time
 ```
 py -m venv env
@@ -40,7 +40,7 @@ pip install -r requirements.txt
 flask run
 ```
 #### In one Terminal
-***Navigate to repo folder***
+##### ***Navigate to repo folder***
 ##### For first time
 ```
 npm install
