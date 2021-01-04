@@ -1,0 +1,15 @@
+  
+{
+    "restaurant": "Al’s Breakfast",
+    "location": {
+        "latitude": 44.981062, 
+        "longitude": -93.235666 
+    },
+    "info": 
+        {
+            "desc": "Small breakfast place: egg specials, pancakes, waffles",
+            "address": "413 14th Ave SE Minneapolis, MN 55414",
+            "hours": "Mon-Sat: 7:00 AM - 1:00 PM \nSun: 9:00 AM - 1:00 PM",
+            "link": "https://www.alsbreakfastmpls.com/"
+        }
+}
