@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import AppMap from './components/AppMap.js';
+import NavigationBar from './Components/NavigationBar';
+import './bootstrap.css';
 
 function App() {
   return (
     <div className="App">
-      <AppMap/>
+      <NavigationBar /> 
+      Created by SASE Labs 2020-2021 
     </div>
   );
 }
