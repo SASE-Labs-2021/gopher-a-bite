@@ -6,9 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 ratings = pd.read_csv('restaurants.csv', index_col = 0)
 """filling the values for items that weren't rated with 0's"""
 ratings = ratings.fillna(0)
-#item_similarity = None;
-#user_similarity = None;
-#item_similarity_df = None;
+
 
 def standardize(row):
     """helps in correcting the ratings of users that were too harsh or lenient
@@ -21,21 +19,13 @@ ratings_std = ratings.apply(standardize)
 
 def similarity():
     """Finding the similarity betweent the different types of restaurants based on the cummulative user ratings"""
-    #user_similarity = cosine_similarity(ratings_std)
     #Taking the transpose as to use the values of the items and not the user
     item_similarity = cosine_similarity(ratings_std.T)
-    #print("User", user_similarity)
     print("Item", item_similarity)
     """Creating a dataframe"""
     item_similarity_df = pd.DataFrame(item_similarity, index = ratings.columns, columns = ratings.columns)
-    #item_score = item_similarity_df
     print("Item_DataFrame", item_similarity_df)
 
-
-
-
-#def recommend():
-#was not able to use the value of item_similarity_df in this method for some reasons even though I created a global variable
 def recommend(restaurant_name, user_rating):
     """Recommending restaurant to the user based on the previous restaurant experienced and the ratings of it. doing so by using the similarity scores"""
     item_similarity = cosine_similarity(ratings_std.T)
@@ -45,9 +35,6 @@ def recommend(restaurant_name, user_rating):
     of the ratings so that if the user has not postively rated the restaurant then the computed values will be in negative and won't be recommended unlike before"""
     similar_score = item_similarity_df[restaurant_name]*(user_rating - 2.5)
     similar_score = similar_score.sort_values(ascending = False)
-
-
-
 
     return similar_score
 
@@ -83,6 +70,6 @@ if __name__ == '__main__':
 """
 Next Challenges:
 Now must try to look into having training and testing datsets and use meansquared error types of things to improve it over time
-and must see how the backend and automatically collect the user data and recommend accordingly
+and must see how the backend can automatically collect the user data and recommend accordingly
 
 """
