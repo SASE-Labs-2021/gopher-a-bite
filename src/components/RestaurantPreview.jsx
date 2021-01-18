@@ -5,14 +5,17 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
-class RestaurantCard extends Component {
-    state = {  
+class RestaurantCard extends Component 
+{
+    state = 
+    {  
         name: "Chipotle",
         rating: 5,
         avgTime: 10,
         tags: "Keto, Gluten-free"
      }
-    render() { 
+    render() 
+    { 
         return ( 
             <Card>
                 <Card.Header as="h5">Today's Restaurant Recommendation</Card.Header>

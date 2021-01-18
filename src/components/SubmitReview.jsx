@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
 class SubmitReview extends Component {

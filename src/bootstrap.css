@@ -9,14 +9,14 @@
     --saseBLt: #540101;
     --saseG: #7b0000;
     --saseGDrk: #448d2e;
-    --saseInBtwn: #ffdb0f;
+    --saseInBtwn: #edb80a;
     --saseInBtwnDrk: #d12f2f;
   
     --bodyText: rgb(255, 255, 255);
     --txtMuted: #cacaca;
     --bodyBkgd: var(--saseBLt);
   
-    --jumbotronBkgd: var(--saseG);
+    --jumbotronBkgd: white;
     --headingBorder: var(--saseInBtwn);
   
     --navbar: var(--saseB);
@@ -5334,8 +5334,10 @@
   .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
-    background-color: var(--jumbotronBkgd);;
+    background-color: white;;
     border-radius: 0.3rem;
+    text-align: left;
+    color:#491217;
   }
   
   @media (min-width: 576px) {

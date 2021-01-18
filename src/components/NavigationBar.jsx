@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import Navbar from 'react-bootstrap/Navbar';
 import RestaurantPreview from './RestaurantPreview';
 import SubmitReview from './SubmitReview';
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import MyProfile from './MyProfile';
+import Intro from './Intro';
 import AppMap from './AppMap';
 import {
   BrowserRouter as Router,
@@ -67,7 +64,11 @@ var routes = [
 ]
 
 function Home() {
-  return <RestaurantPreview/>;
+  return (
+    <div>
+      <Intro/>
+      <RestaurantPreview/>
+    </div>);
 }
 
 function Nearby() {
