@@ -8,7 +8,6 @@ import RestaurantPreview from './RestaurantPreview';
 import SubmitReview from './SubmitReview';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import MyProfile from './MyProfile';
-import Login from './Login';
 import AppMap from './AppMap';
 import {
   BrowserRouter as Router,
@@ -27,7 +26,6 @@ export default function NavigationBar() {
             <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
             <Nav.Link href="/profile">My Profile</Nav.Link>
             <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
-            <Nav.Link href="/login">login</Nav.Link>
           </Nav>
         </Navbar>
         {/* A <Switch> looks through its children <Route>s and
@@ -66,10 +64,6 @@ var routes = [
 		path: '/reviews',
 		main: () => <Reviews/>
   },
-  {
-		path: '/login',
-		main: () => <Login/>
-	},
 ]
 
 function Home() {
@@ -85,7 +79,4 @@ function Profile() {
 }
 function Reviews() {
   return <SubmitReview/>;
-}
-function Login() {
-  return <Login/>;
 }

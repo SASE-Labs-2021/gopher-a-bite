@@ -1,5 +1,5 @@
 import './App.css';
-import NavigationBar from './Components/NavigationBar';
+import NavigationBar from './components/NavigationBar';
 import './bootstrap.css';
 
 function App() {
