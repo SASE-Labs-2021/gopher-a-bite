@@ -12,7 +12,7 @@ class Intro extends Component
             <Jumbotron>
                 <h1 >Welcome to Gopher A Bite!</h1>
                 <p>
-                    Are you a University of Minnesota, Twin Cities student? Do you love food? We'll you're in the right place! 
+                    Are you a University of Minnesota, Twin Cities student? Do you love food? Well you're in the right place! 
                     At Gopher A Bite, we give you a daily restaurant recommendation located near the UMN based on your reviews and profile!
                 </p>
 
