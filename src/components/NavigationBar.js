@@ -3,7 +3,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import RestaurantPreview from './RestaurantPreview';
 import SubmitReview from './SubmitReview';
-import MyProfile from './MyProfile';
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import LoginRoutes from "./LoginRoutes";
+import UserProvider from "../providers/UserProvider";
+import ProfilePage from "./ProfilePage";
+import { UserContext } from "../providers/UserProvider";
 import Intro from './Intro';
 import AppMap from './AppMap';
 import {
@@ -21,7 +26,7 @@ export default function NavigationBar() {
           <Nav>
           <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
-            <Nav.Link href="/profile">My Profile</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
           </Nav>
         </Navbar>
@@ -72,11 +77,14 @@ function Home() {
 }
 
 function Nearby() {
-  return <h2><AppMap/></h2>; //Map code goes here
+  return <AppMap/>; //Map code goes here
 }
 
 function Profile() {
-  return <h2><MyProfile/></h2>;
+  return (<UserProvider>
+            <LoginRoutes/>
+            <SignIn/>
+          </UserProvider>);
 }
 function Reviews() {
   return <SubmitReview/>;

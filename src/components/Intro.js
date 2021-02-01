@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
-import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
+const white = {
+    background: "#fff",
+    width: '50rem',
+    margin: '0 auto', 
+    float: 'none',
+    'margin-bottom': '10px', 
+    border: '3px solid #bd930a',
+    color: '#540101'
+}
 class Intro extends Component 
 {
     state = {  }
     render() 
     { 
         return ( 
-        <div>
-            <Jumbotron>
-                <h1 >Welcome to Gopher A Bite!</h1>
-                <p>
+        <div className = 'align-items-center'>
+            <Card style={white}>
+            <Card.Body>
+                <Card.Title as ="h1">Welcome to Gopher A Bite!</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">created by the Society of Asian Scientist and Enginneers Lab team! AKA SASE Labs!</Card.Subtitle>
+                <Card.Text>
                     Are you a University of Minnesota, Twin Cities student? Do you love food? Well you're in the right place! 
                     At Gopher A Bite, we give you a daily restaurant recommendation located near the UMN based on your reviews and profile!
-                </p>
-
-                <p>
-                    <Button >Get My Own Personal Recommendations!</Button>
-                </p>
-            </Jumbotron>
-                <Jumbotron>
-                    <h1>Meet the Creators</h1>
-                    <p>
-                        Gopher A Bite was created by the Society of Asian Scientist and Enginneers Lab team! AKA SASE Labs! Every year SASE Labs gets together and creates an annual project... more stuff... all of our names
-                    </p>
-                    <p>
-                        <Button>Learn more about SASE</Button>
-                    </p>
-                </Jumbotron>
+                </Card.Text>
+                <Button >Get My Own Personal Recommendations!</Button>
+            </Card.Body>
+            </Card>
         </div>
          );
     }

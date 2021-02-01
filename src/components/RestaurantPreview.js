@@ -5,6 +5,15 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
+const white = {
+    background: "#fff",
+    width: '50rem',
+    margin: '0 auto', 
+    float: 'none',
+    'margin-bottom': '10px', 
+    border: '3px solid #bd930a',
+    color: '#540101'
+}
 class RestaurantCard extends Component 
 {
     state = 
@@ -17,7 +26,7 @@ class RestaurantCard extends Component
     render() 
     { 
         return ( 
-            <Card>
+            <Card style={white}>
                 <Card.Header as="h5">Today's Restaurant Recommendation</Card.Header>
                 <Card.Body>
                     <Card.Title as = "h2">{this.state.name}</Card.Title>
