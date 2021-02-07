@@ -1,10 +1,19 @@
 from flask import Flask 
-import json 
+from flask_restful import Resource,Api
+import json
+import pandas as pd 
  
 app = Flask(__name__) 
-import pandas as pd 
-df = pd.read_csv("rest_info.csv").dropna() 
- 
+api = Api(app) # Idk what this does
+
+class HelloWorld(Resource): # class HelloWorld extending Resource(get & put functions)
+    def get(self):
+        return {'hello': 'world'}
+
+api.add_resource(HelloWorld, '/') # Sets the URL where this is run
+
+df = pd.read_csv("rest_info.csv").dropna()
+
 @app.route('/restaurants/<id>') 
 def get_rest(id):
     restRowLabels = df.loc[df.id==id].columns # Grabs 1st row of titles

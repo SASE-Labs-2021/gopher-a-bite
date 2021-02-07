@@ -36,7 +36,6 @@ py -m venv env
 ##### Otherwise
 ```
 env\Scripts\activate.bat
-pip install -r requirements.txt
 flask run
 ```
 #### In one Terminal
