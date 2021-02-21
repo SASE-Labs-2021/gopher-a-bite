@@ -1,17 +1,10 @@
-
-#User login imports
-from app import app, db
-from app.models import User, Post
-
-#Map imports
+from flask import Flask 
 import json 
+ 
+app = Flask(__name__) 
 import pandas as pd 
 df = pd.read_csv("rest_info.csv").dropna() 
-
-@app.shell_context_processor
-def make_shell_context():
-    return {'db': db, 'User': User, 'Post': Post}
-
+ 
 @app.route('/restaurants/<id>') 
 def get_rest(id):
     restRowLabels = df.loc[df.id==id].columns # Grabs 1st row of titles

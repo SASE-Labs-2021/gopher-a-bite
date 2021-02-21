@@ -27,7 +27,7 @@ class RestaurantCard extends Component
     { 
         return ( 
             <Card style={white}>
-                <Card.Header as="h5">Today's Restaurant Recommendation</Card.Header>
+                <Card.Header as="h5" style = {{color: "#ffffff"}}>Today's Restaurant Recommendation</Card.Header>
                 <Card.Body>
                     <Card.Title as = "h2">{this.state.name}</Card.Title>
                     <Card.Text as = "h6"> 

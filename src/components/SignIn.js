@@ -4,6 +4,15 @@ import { signInWithGoogle } from "../firebase";
 import { auth } from "../firebase";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+const white = {
+  background: "#fff",
+  width: '20rem',
+  margin: '0 auto', 
+  float: 'none',
+  'margin-bottom': '10px', 
+  border: '3px solid #bd930a',
+  color: '#540101'
+}
 const SignIn = () => {
 
     const [email, setEmail] = useState('');
@@ -31,57 +40,17 @@ const SignIn = () => {
    
 
   return (
-    <Card>
-      <h1>Sign In</h1>
+    <Card style = {white}>
+      <h2>Sign In</h2>
       <div>
-        {error !== null && <div>{error}</div>}
-        <form className="">
-          <label htmlFor="userEmail" className="block">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="my-1 p-1 w-full"
-            name="userEmail"
-            value = {email}
-            placeholder="E.g: faruq123@gmail.com"
-            id="userEmail"
-            onChange = {(event) => onChangeHandler(event)}
-          />
-          <label htmlFor="userPassword" className="block">
-            Password:
-          </label>
-          <input
-            type="password"
-            className="mt-1 mb-3 p-1 w-full"
-            name="userPassword"
-            value = {password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange = {(event) => onChangeHandler(event)}
-          />
-          <Button onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-            Sign in
-          </Button>
-        </form>
-        <p>or</p>
+        
         <Button
           onClick={() => {
             signInWithGoogle();
           }}
         >
-          Sign in with Google
+          Click Here to Sign in with Google
         </Button>
-        <p>
-          Don't have an account?{" "}
-          <Link to="signUp" >
-            Sign up here
-          </Link>{" "}
-          <br />{" "}
-          <Link to="passwordReset" >
-            Forgot Password?
-          </Link>
-        </p>
       </div>
     </Card>
   );

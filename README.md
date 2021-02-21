@@ -20,32 +20,46 @@ cd api
 python3 -m venv env # py -m venv env if you are using Windows
 source env/bin/activate
 pip install -r requirements.txt
+export FLASK_APP=api.py
 flask run
 cd ..
 npm install
 npm start
 
 ```
+
 ### For Windows
+
 #### In one Terminal
-##### ***Navigate to api folder***
+
+##### **_Navigate to api folder_**
+
 ##### For first time
+
 ```
 py -m venv env
 ```
+
 ##### Otherwise
+
 ```
 env\Scripts\activate.bat
 pip install -r requirements.txt
 flask run
 ```
+
 #### In one Terminal
-##### ***Navigate to repo folder***
+
+##### **_Navigate to repo folder_**
+
 ##### For first time
+
 ```
 npm install
 ```
+
 ##### Otherwise
+
 ```
 npm start
 
