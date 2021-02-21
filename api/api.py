@@ -1,16 +1,31 @@
-from flask import Flask 
-from flask_restful import Resource,Api
+from flask import Flask, request
+from flask_restful import Resource, Api
+from datetime import date
 import json
 import pandas as pd 
- 
-app = Flask(__name__) 
-api = Api(app) # Idk what this does
 
-class HelloWorld(Resource): # class HelloWorld extending Resource(get & put functions)
+app = Flask(__name__)
+api = Api(app)
+Reviews = pd.DataFrame(columns=['restaurant', 'starRates', 'title','date','desc','author'])
+class RestReviews(Resource): # class IndReviews extending Resource(get & put functions)
+    def get(self, rest_id):
+        out = Reviews['restaurant'].isin([rest_id]) #filter dataframe
+        RestReviews = df[out]
+        return RestReviews
+    def put(self, rest_id):
+        new_review = pd.DataFrame([request.form['restaurant'], request.form['starRates'], request.form['title'],
+        date.today().strftime("%m/%d/%y"), request.form['desc'], request.form['author']],
+        columns=['restaurant', 'starRates', 'title','date','desc','author']) # restaurant & author may be changed so that it pulls from login
+        Reviews = Reviews.concat(new_review, ignore_index=True)
+        return new_review, 201
+
+class AllReviews(Resource):
     def get(self):
-        return {'hello': 'world'}
+        FiltReviews = Reviews.sort_values(by='date')
+        return FiltReviews.to_json(force_ascii=True)
 
-api.add_resource(HelloWorld, '/') # Sets the URL where this is run
+api.add_resource(RestReviews, '/Reviews/<string:rest_id>') # Sets the URL where this is run
+api.add_resource(AllReviews, '/Reviews')
 
 df = pd.read_csv("rest_info.csv").dropna()
 
