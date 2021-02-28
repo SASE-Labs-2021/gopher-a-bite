@@ -7,11 +7,20 @@ import SubmitReview from './SubmitReview';
 import Intro from './Intro';
 import AppMap from './AppMap';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-
+import {auth} from "../firebase";
+import ProfilePage from './ProfilePage';
 // for sign in
 import { signInWithGoogle } from "../firebase";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import UserContext from '../providers/UserProvider';
+import firebase from "firebase/app";
+
+var provider = new firebase.auth.GoogleAuthProvider();
+
+    
+
+
 //Styling for sign in
 const white = {
   background: "#fff",
@@ -22,6 +31,8 @@ const white = {
   border: '8px solid #bd930a',
   color: '#540101'
 }
+
+
 //chooses which function to implements given the path
 var routes = [
 	{
@@ -57,7 +68,7 @@ function Nearby()
 }
 function Profile() 
 {
-  return (<h1>hi</h1> );
+  return <ProfilePage/>;
 }
 function Reviews() 
 {
@@ -69,7 +80,7 @@ export default class NavigationBar extends Component
   constructor(props) 
   {
     super(props);
-    this.state = { signedIn: false, user_id: "" };
+    this.state = { signedIn: false};
   }
   render()
   {
@@ -83,10 +94,18 @@ export default class NavigationBar extends Component
             <h2>Sign In</h2>
             <div>
               <Button
-                onClick={() => { // once they click on the button, the nav bar is generated
-                  signInWithGoogle()
-                  this.setState({ signedIn: true });
-                }}
+                onClick=
+                {() => 
+                  { // once they click on the button, a pop up for google sign in pops up
+                    firebase
+                      .auth()
+                      .signInWithPopup(provider)
+                      .then((result) => 
+                      {
+                        this.setState({ signedIn: true }) // once set to true, the nav bar will appear
+                      });
+                  }
+                }
               >
                 Click Here to Sign in with Google
               </Button>
@@ -95,7 +114,8 @@ export default class NavigationBar extends Component
         </center>
       );
     }
-
+    //const user = useContext(UserContext);
+    //const {photoURL, displayName, email} = user;
     return( // this will generate once they log in
       <Router>
         <div>
@@ -106,6 +126,7 @@ export default class NavigationBar extends Component
               <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
               <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
+              displayName
             </Nav>
           </Navbar>
           <Switch>
