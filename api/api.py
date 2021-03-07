@@ -1,23 +1,33 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
+from flask_restful import reqparse, Resource, Api
 from datetime import date
 import json
 import pandas as pd 
 
 app = Flask(__name__)
 api = Api(app)
-Reviews = pd.DataFrame(columns=['restaurant', 'starRates', 'title','date','desc','author'])
+parser = reqparse.RequestParser()
+parser.add_argument('restaurant')
+parser.add_argument('starRates', type=int)
+parser.add_argument('title')
+parser.add_argument('desc')
+parser.add_argument('author', default='Anonymous')
+
+global Reviews = pd.DataFrame(columns=['restaurant', 'starRates', 'title','date','desc','author'])
 class RestReviews(Resource): # class IndReviews extending Resource(get & put functions)
     def get(self, rest_id):
         out = Reviews['restaurant'].isin([rest_id]) #filter dataframe
-        RestReviews = df[out]
+        RestReviews = out.to_json()
         return RestReviews
     def put(self, rest_id):
-        new_review = pd.DataFrame([request.form['restaurant'], request.form['starRates'], request.form['title'],
-        date.today().strftime("%m/%d/%y"), request.form['desc'], request.form['author']],
+        args = parser.parse_args()
+        rest_id = request.form['restaurant']
+        new_review = pd.DataFrame([[rest_id, request.form['starRates'], request.form['title'],
+        date.today().strftime("%m/%d/%y"), request.form['desc'], request.form['author']]],
         columns=['restaurant', 'starRates', 'title','date','desc','author']) # restaurant & author may be changed so that it pulls from login
         Reviews = Reviews.concat(new_review, ignore_index=True)
-        return new_review, 201
+        jsonVer = new_review.to_json()
+        return jsonVer, 201
 
 class AllReviews(Resource):
     def get(self):
