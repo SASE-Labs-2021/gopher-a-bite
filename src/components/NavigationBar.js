@@ -9,14 +9,6 @@ import AppMap from './AppMap';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {auth} from "../firebase";
 import ProfilePage from './ProfilePage';
-// for sign in
-import { signInWithGoogle } from "../firebase";
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import UserContext from '../providers/UserProvider';
-import firebase from "firebase/app";
-
-var provider = new firebase.auth.GoogleAuthProvider();
 
     
 
@@ -77,45 +69,9 @@ function Reviews()
 
 export default class NavigationBar extends Component
 {
-  constructor(props) 
-  {
-    super(props);
-    this.state = { signedIn: false};
-  }
   render()
   {
-    if(!this.state.signedIn) //Case where they are not signed in
-    { // generate a button that they can click to log in with Google
-      return(
-        <center>
-          <h1> Gopher A Bite </h1>
-          <p>Welcome! Before we can give you restaurant recommendations, please sign in! </p>
-          <Card style = {white}>
-            <h2>Sign In</h2>
-            <div>
-              <Button
-                onClick=
-                {() => 
-                  { // once they click on the button, a pop up for google sign in pops up
-                    firebase
-                      .auth()
-                      .signInWithPopup(provider)
-                      .then((result) => 
-                      {
-                        this.setState({ signedIn: true }) // once set to true, the nav bar will appear
-                      });
-                  }
-                }
-              >
-                Click Here to Sign in with Google
-              </Button>
-              </div>
-          </Card>
-        </center>
-      );
-    }
-    //const user = useContext(UserContext);
-    //const {photoURL, displayName, email} = user;
+    
     return( // this will generate once they log in
       <Router>
         <div>
@@ -126,7 +82,6 @@ export default class NavigationBar extends Component
               <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
               <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
-              displayName
             </Nav>
           </Navbar>
           <Switch>
