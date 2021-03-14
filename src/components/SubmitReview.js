@@ -27,25 +27,27 @@ class SubmitReview extends Component {
         <Card>
           <Card.Header as="h2">Submit Your Review</Card.Header>
           <Card.Body>
-          <ListGroupItem>
+            <ListGroupItem>
               Restaurant :
-              <input
-                name="rest"
-                type="text"
-                value={this.state.rest}
-                onChange={this.onInputchange}
-              />
+                <input
+                  name="rest"
+                  type="text"
+                  value={this.state.rest}
+                  onChange={this.onInputchange}
+                />
             </ListGroupItem>
             <ListGroupItem>
-                <Button variant="primary">Sign into Account for Points</Button>
-                <Button variant="primary">Submit Anonymously</Button>
-                <Button variant="primary">Enter Name as Guest</Button>
+              <Button variant="primary">Sign into Account for Points</Button>
+              <Button variant="secondary">Submit Anonymously</Button>
+              <Button variant="primary">Enter Name as Guest</Button>
+            </ListGroupItem>
+            <ListGroupItem>
               Name :
-              <input
-                name="reviewer_name"
-                type="text"
-                value={this.state.reviewer_name}
-                onChange={this.onInputchange}
+                <input
+                  name="reviewer_name"
+                  type="text"
+                  value={this.state.reviewer_name}
+                  onChange={this.onInputchange}
               />
             </ListGroupItem>
             <ListGroupItem>
