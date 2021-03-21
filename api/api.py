@@ -13,7 +13,7 @@ parser.add_argument('title')
 parser.add_argument('desc')
 parser.add_argument('author', default='Anonymous')
 
-global Reviews = pd.DataFrame(columns=['restaurant', 'starRates', 'title','date','desc','author'])
+Reviews = pd.DataFrame(columns=['restaurant', 'starRates', 'title','date','desc','author'])
 class RestReviews(Resource): # class IndReviews extending Resource(get & put functions)
     def get(self, rest_id):
         out = Reviews['restaurant'].isin([rest_id]) #filter dataframe
@@ -34,8 +34,8 @@ class AllReviews(Resource):
         FiltReviews = Reviews.sort_values(by='date')
         return FiltReviews.to_json(force_ascii=True)
 
-api.add_resource(RestReviews, '/Reviews/<string:rest_id>') # Sets the URL where this is run
 api.add_resource(AllReviews, '/Reviews')
+api.add_resource(RestReviews, '/Reviews/<string:rest_id>') # Sets the URL where this is run
 
 df = pd.read_csv("rest_info.csv").dropna()
 
