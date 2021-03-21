@@ -4,14 +4,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import RestaurantPreview from './RestaurantPreview';
 import SubmitReview from './SubmitReview';
+import StarRating from './StarRating';
 import Intro from './Intro';
 import AppMap from './AppMap';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {auth} from "../firebase";
 import ProfilePage from './ProfilePage';
-
-    
-
 
 //Styling for sign in
 const white = {
@@ -23,7 +21,6 @@ const white = {
   border: '8px solid #bd930a',
   color: '#540101'
 }
-
 
 //chooses which function to implements given the path
 var routes = [
@@ -70,7 +67,7 @@ function Reviews()
 export default class NavigationBar extends Component
 {
   render()
-  {
+  { console.log("nav bar");
     
     return( // this will generate once they log in
       <Router>

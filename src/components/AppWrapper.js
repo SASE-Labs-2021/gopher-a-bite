@@ -25,6 +25,7 @@ function AppWrapper(){
     // log in cover with be rendered if nobody has signed in yet
     if(user == null) //Case where they are not signed in
     { // generate a button that they can click to log in with Google
+      console.log("sign in page pop up");
       return(
         <center>
           <h1> Gopher A Bite </h1>

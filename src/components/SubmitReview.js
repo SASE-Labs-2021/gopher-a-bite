@@ -2,7 +2,17 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Button from 'react-bootstrap/Button';
+import StarRating from './StarRating';
 
+const white = {
+  background: "#fff",
+  width: '50rem',
+  margin: '0 auto', 
+  float: 'none',
+  'margin-bottom': '10px', 
+  border: '5px solid #bd930a',
+  color: '#540101'
+}
 class SubmitReview extends Component {
     constructor() {
       super();
@@ -24,40 +34,10 @@ class SubmitReview extends Component {
     render() {
       const { items } = this.state;
       return (
-        <Card>
-          <Card.Header as="h2">Submit Your Review</Card.Header>
-          <Card.Body>
-          <ListGroupItem>
-              Restaurant :
-              <input
-                name="rest"
-                type="text"
-                value={this.state.rest}
-                onChange={this.onInputchange}
-              />
-            </ListGroupItem>
-            <ListGroupItem>
-                <Button variant="primary">Sign into Account for Points</Button>
-                <Button variant="primary">Submit Anonymously</Button>
-                <Button variant="primary">Enter Name as Guest</Button>
-              Name :
-              <input
-                name="reviewer_name"
-                type="text"
-                value={this.state.reviewer_name}
-                onChange={this.onInputchange}
-              />
-            </ListGroupItem>
-            <ListGroupItem>
-              Rating :
-              <input
-                name="rating"
-                type="text"
-                value={this.state.rating}
-                onChange={this.onInputchange}
-              />
-            </ListGroupItem>
-            <ListGroupItem>
+        <Card style={white}>
+          <h3>Submit a Review</h3>
+          <StarRating/>
+            <Card.Body>
               Write your Review Here :
               <input
                 name="note"
@@ -65,9 +45,8 @@ class SubmitReview extends Component {
                 value={this.state.note}
                 onChange={this.onInputchange}
               />
-            </ListGroupItem>
-              <button onClick={this.onSubmitForm}>Submit</button>
-          </Card.Body>
+              </Card.Body>
+              <Button>Submit</Button>
         </Card>
       );
     }

@@ -10,9 +10,10 @@ class UserProvider extends Component {
     user: null
   };
   
-  componentDidMount = () => {
-    auth.onAuthStateChanged(userAuth => {
+  componentDidMount = async () => { 
+    await auth.onAuthStateChanged(userAuth => {
       this.setState({ user: userAuth});
+      console.log("mounting component");
     });
 };
 
