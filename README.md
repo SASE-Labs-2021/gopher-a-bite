@@ -30,27 +30,35 @@ npm start
 
 ### For Windows
 
-#### In one Terminal
+#### In One Terminal (Python backend)
+ 
+```
+cd %% path to api folder
+```
 
-##### **_Navigate to api folder_**
-
-##### For first time
+##### To set up virtual environment (first time)
 
 ```
 py -m venv env
-```
-
-##### Otherwise
-
-```
 env\Scripts\activate.bat
 pip install -r requirements.txt
+set FLASK_APP=api.py
 flask run
 ```
 
-#### In one Terminal
+##### Every other time after set up (instead of above)
 
-##### **_Navigate to repo folder_**
+```
+env\Scripts\activate.bat
+set FLASK_APP=api.py
+flask run
+```
+
+#### In Second Terminal (Node Frontend, leave other running)
+
+```
+cd %% path to repo folder
+```
 
 ##### For first time
 
@@ -58,7 +66,7 @@ flask run
 npm install
 ```
 
-##### Otherwise
+##### Every other time
 
 ```
 npm start
