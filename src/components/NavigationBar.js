@@ -7,94 +7,111 @@ import SubmitReview from './SubmitReview';
 import StarRating from './StarRating';
 import Intro from './Intro';
 import AppMap from './AppMap';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import {auth} from "../firebase";
-import ProfilePage from './ProfilePage';
+import {
+    BrowserRouter as Router,
+    useLocation,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
-//Styling for sign in
-const white = {
-  background: "#fff",
-  width: '25rem',
-  margin: '0 auto', 
-  float: 'none',
-  'margin-bottom': '10px', 
-  border: '8px solid #bd930a',
-  color: '#540101'
-}
+function useQuery() {
 
-//chooses which function to implements given the path
-var routes = [
-	{
-		path: '/',
-		exact: true,
-		main: () => <Home/>
-	},
-	{
-		path: '/nearby',
-		main: () => <Nearby/>
-	},
-	{
-		path: '/profile',
-		main: () => <Profile/>
-	},
-  {
-		path: '/reviews',
-		main: () => <Reviews/>
-  },
-]
-// decides what components to show when given function is called
-function Home() 
-{
-  return (
-    <div>
-      <Intro/>
-      <RestaurantPreview/>
-    </div>);
-}
-function Nearby() 
-{
-  return <AppMap/>; 
-}
-function Profile() 
-{
-  return <ProfilePage/>;
-}
-function Reviews() 
-{
-  return <SubmitReview/>;
+    return new URLSearchParams(useLocation().search);
+
 }
 
-export default class NavigationBar extends Component
-{
-  render()
-  { console.log("nav bar");
-    
-    return( // this will generate once they log in
-      <Router>
-        <div>
-          <Navbar>
-          <Navbar.Brand>Gopher-A-Bite</Navbar.Brand> 
-            <Nav>
-            <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/nearby">What's Nearby?</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
-              <Nav.Link href="/reviews">Submit a Review!</Nav.Link>
-            </Nav>
-          </Navbar>
-          <Switch>
-            <div style={{ 'paddingTop': 20 }}>
-              {routes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  children={<route.main/>}
+function ReviewsComponent() {
+
+    let query = useQuery();
+    return <SubmitReview restaurant = { query.get('restaurant') }
+    />;
+}
+
+
+export default function NavigationBar() {
+    return ( <
+            Router >
+            <
+            div >
+            <
+            Navbar >
+            <
+            Navbar.Brand > Gopher - A - Bite < /Navbar.Brand> <
+            Nav >
+            <
+            Nav.Link href = "/" > Home < /Nav.Link> <
+            Nav.Link href = "/nearby" > What 's Nearby?</Nav.Link> <
+            Nav.Link href = "/profile" > Profile < /Nav.Link> <
+            Nav.Link href = "/reviews" > Submit a Review! < /Nav.Link> < /
+            Nav > <
+            /Navbar> {
+            /* A <Switch> looks through its children <Route>s and
+                        renders the first one that matches the current URL. */
+        } <
+        Switch >
+        <
+        div style = {
+            { 'paddingTop': 20 }
+        } > {
+            routes.map((route, index) => ( <
+                Route key = { index }
+                path = { route.path }
+                exact = { route.exact }
+                children = { < route.main / > }
                 />
-              ))}
-            </div>
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+            ))
+        } <
+        /div> < /
+    Switch > <
+        /div> < /
+    Router >
+);
 }
+var routes = [{
+        path: '/',
+        exact: true,
+        main: () => < Home / >
+    },
+    {
+        path: '/nearby',
+        main: () => < Nearby / >
+    },
+    {
+        path: '/profile',
+        main: () => < Profile / >
+    },
+    {
+        path: '/reviews',
+        main: () => < ReviewsComponent / >
+    }
+]
+
+function Home() {
+    return ( <
+        div >
+        <
+        Intro / >
+        <
+        RestaurantPreview / >
+        <
+        /div>);
+    }
+
+    function Nearby() {
+        return <AppMap / > ; //Map code goes here
+    }
+
+    function Profile() {
+        return ( < UserProvider >
+            <
+            LoginRoutes / >
+            <
+            SignIn / >
+            <
+            /UserProvider>);
+        }
+
+        function Reviews() {
+            return <SubmitReview / > ;
+        }
