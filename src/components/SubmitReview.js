@@ -40,13 +40,7 @@ class SubmitReview extends Component {
             /
             ListGroupItem > <
             ListGroupItem >
-            Rating:
-            <
-            input name = "rating"
-            type = "text"
-            value = { this.state.rating }
-            onChange = { this.onInputchange }
-            /> < /
+            <StarRating/> < /
             ListGroupItem > <
             ListGroupItem >
             Write your Review Here:

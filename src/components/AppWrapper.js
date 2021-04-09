@@ -2,6 +2,7 @@
 import NavigationBar from './NavigationBar';
 import React, {useContext } from "react";
 
+
 // for sign in
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -37,12 +38,14 @@ function AppWrapper(){
                 onClick=
                 {() => 
                   { // once they click on the button, a pop up for google sign in pops up
+                    
                     firebase
                       .auth()
                       .signInWithPopup(provider)
                       .then((result) => 
                       {
                         console.log("Signed out");
+                        console.log(user)
                         //this.setState({ signedIn: true }) // once set to true, the nav bar will appear
                       });
                   }
