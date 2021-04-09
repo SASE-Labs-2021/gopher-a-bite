@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Button from 'react-bootstrap/Button';
-
+import StarRating from './StarRating';
 
 class SubmitReview extends Component {
     constructor(props) {
@@ -40,13 +40,7 @@ class SubmitReview extends Component {
             /
             ListGroupItem > <
             ListGroupItem >
-            Rating:
-            <
-            input name = "rating"
-            type = "text"
-            value = { this.state.rating }
-            onChange = { this.onInputchange }
-            /> < /
+            <StarRating/> < /
             ListGroupItem > <
             ListGroupItem >
             Write your Review Here:

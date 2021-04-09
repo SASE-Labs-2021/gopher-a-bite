@@ -11,7 +11,7 @@ const white = {
     margin: '0 auto', 
     float: 'none',
     'margin-bottom': '10px', 
-    border: '3px solid #bd930a',
+    border: '5px solid #bd930a',
     color: '#540101'
 }
 class RestaurantCard extends Component 

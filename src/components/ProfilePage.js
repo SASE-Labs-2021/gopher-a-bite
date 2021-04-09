@@ -1,28 +1,34 @@
 import React, { useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 import {auth} from "../firebase";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+const white = {
+  background: "#fff",
+  width: '18rem',
+  margin: '0 auto', 
+  float: 'none',
+  'margin-bottom': '10px', 
+  border: '5px solid #bd930a',
+  color: '#540101'
+}
 const ProfilePage = () => {
   const user = useContext(UserContext);
   const {photoURL, displayName, email} = user;
   return (
-    <div className = "mx-auto w-11/12 md:w-2/4 py-8 px-4 md:px-8">
-      <div className="flex border flex-col items-center md:flex-row md:items-start border-blue-400 px-3 py-4">
-        <div
-          style={{
-            background: `url(${photoURL || 'https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png'})  no-repeat center center`,
-            backgroundSize: "cover",
-            height: "200px",
-            width: "200px"
-          }}
-          className="border border-blue-300"
-        ></div>
-        <div className = "md:pl-4">
-        <h2 className = "text-2xl font-semibold">{displayName}</h2>
-        <h3 className = "italic">{email}</h3>
-        </div>
-      </div>
-      <button className = "w-full py-3 bg-red-600 mt-4 text-white" onClick = {() => {auth.signOut()}}>Sign out</button>
-    </div>
+    //<Card style = {white}>
+      
+        <Card style={white}>
+        <Card.Img src={photoURL} />
+        <Card.Body>
+          <Card.Header style = {{color: '#ffffff'}}><h4>{displayName}</h4></Card.Header>
+            <Card.Text>
+              Email: {email}
+            </Card.Text>
+          <Button onClick = {() => {auth.signOut()}}>Sign out</Button>
+        </Card.Body>
+      </Card>
+
   ) 
 };
 export default ProfilePage;

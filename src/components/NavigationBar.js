@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import RestaurantPreview from './RestaurantPreview';
 import SubmitReview from './SubmitReview';
 import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import LoginRoutes from "./LoginRoutes";
 import UserProvider from "../providers/UserProvider";
 import ProfilePage from "./ProfilePage";
 import { UserContext } from "../providers/UserProvider";
+import StarRating from './StarRating';
 import Intro from './Intro';
 import AppMap from './AppMap';
 import {
@@ -46,8 +46,7 @@ export default function NavigationBar() {
             <
             Nav.Link href = "/" > Home < /Nav.Link> <
             Nav.Link href = "/nearby" > What 's Nearby?</Nav.Link> <
-            Nav.Link href = "/profile" > Profile < /Nav.Link> <
-            Nav.Link href = "/reviews" > Submit a Review! < /Nav.Link> < /
+            Nav.Link href = "/profile" > Profile < /Nav.Link> < /
             Nav > <
             /Navbar> {
             /* A <Switch> looks through its children <Route>s and
@@ -90,32 +89,19 @@ var routes = [{
         main: () => < ReviewsComponent / >
     }
 ]
-
-function Home() {
-    return ( <
-        div >
-        <
-        Intro / >
-        <
-        RestaurantPreview / >
-        <
-        /div>);
-    }
-
-    function Nearby() {
-        return <AppMap / > ; //Map code goes here
-    }
-
-    function Profile() {
-        return ( < UserProvider >
-            <
-            LoginRoutes / >
-            <
-            SignIn / >
-            <
-            /UserProvider>);
-        }
-
-        function Reviews() {
-            return <SubmitReview / > ;
-        }
+function Home() 
+{
+  return (
+    <div>
+      <Intro/>
+      <RestaurantPreview/>
+    </div>);
+}
+function Nearby() 
+{
+  return <AppMap/>; 
+}
+function Profile() 
+{
+  return <ProfilePage/>;
+}
