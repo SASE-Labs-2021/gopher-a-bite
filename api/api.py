@@ -1,8 +1,34 @@
-from flask import Flask 
+from flask import Flask, request 
+from flask_restful import Resource, Api
 import json 
- 
-app = Flask(__name__) 
 import pandas as pd 
+ 
+app = Flask(__name__)
+api = Api(app)
+
+columns = ['rest_id', 'user_id', 'rating', 'review']
+REVIEWS = pd.DataFrame(columns=columns)
+
+class Review(Resource):
+    def get(self, rest_id):
+        print(f'get: {REVIEWS[REVIEWS.rest_id == rest_id]}')
+        print(f'rest_id: {rest_id}')
+        print(f'{REVIEWS}')
+        return REVIEWS[REVIEWS.rest_id == rest_id].to_json(index=False, orient='records')
+
+    def put(self, rest_id):
+        user_id = request.form['user_id']
+        rating = request.form['rating']
+        review = request.form['review']
+        new_row = dict(zip(columns, [
+            rest_id, user_id, rating, review
+        ]))
+        REVIEWS.loc[len(REVIEWS)] = new_row
+        print(f'put: {REVIEWS}')
+        return new_row, 201
+
+api.add_resource(Review, '/review/<rest_id>')
+
 df = pd.read_csv("rest_info.csv").dropna() 
  
 @app.route('/restaurants/<id>') 
@@ -20,3 +46,6 @@ def get_ids():
     dictObj = dict(zip(restNames,restVals)) # Zipped & turned to dictionary
     jsonOut = json.dumps(dictObj, sort_keys=True, ensure_ascii=False) # Converts dictionary to json
     return jsonOut
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
