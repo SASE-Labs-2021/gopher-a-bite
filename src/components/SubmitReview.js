@@ -45,7 +45,7 @@ function SubmitReview(props) {
                     />
                 </ListGroupItem>
                 <button onClick={async () => {
-                    const names = await getData('/ids')
+                    const names = await getData('https://gopher-a-bite.uc.r.appspot.com/ids')
                     const response = await fetch(`/review/${names[props.restaurant]}`, {
                         method: 'PUT',
                         body: `user_id=${displayName}&rating=${rating}&review=${review}`,

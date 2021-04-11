@@ -22,6 +22,7 @@ var user = firebase.auth().currentUser;
 class App extends Component {
 
   render() {
+    document.title = 'Gopher-A-Bite'
 
     return (
       <center>

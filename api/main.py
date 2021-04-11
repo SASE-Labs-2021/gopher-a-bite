@@ -1,9 +1,12 @@
 from flask import Flask, request 
 from flask_restful import Resource, Api
 import json 
-import pandas as pd 
+import pandas as pd
+import os 
  
 app = Flask(__name__)
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 api = Api(app)
 
 columns = ['rest_id', 'user_id', 'rating', 'review']
