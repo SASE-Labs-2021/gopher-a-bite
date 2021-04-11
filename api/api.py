@@ -37,9 +37,14 @@ api.add_resource(Review, '/review/<rest_id>')
 
 df = pd.read_csv("rest_info.csv").dropna() 
 
+@app.route('/recommendation/<user>')
+def get_recommendation(user):
+    REVIEWS.rating = REVIEWS.rating.astype(int)
+    return REVIEWS.groupby(['rest_id']).mean().to_json()
+
 @app.route('/ratings/<id>')
 def get_rating(id):
-    return json.dumps({'rating': REVIEWS[REVIEWS.rest_id == id]['rating'].mean()}, sort_keys=False, ensure_ascii=False)
+    return json.dumps({'rating': 5 if REVIEWS[REVIEWS.rest_id == id]['rating'].empty else REVIEWS[REVIEWS.rest_id == id]['rating'].mean()}, sort_keys=False, ensure_ascii=False)
 
 @app.route('/restaurants/<id>') 
 def get_rest(id):

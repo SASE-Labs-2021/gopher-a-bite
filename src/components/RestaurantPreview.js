@@ -23,6 +23,7 @@ class RestaurantCard extends Component
         super(props);
         this.state = {
             rating: 5,
+            info: null,
             reviews: [],
             isLoading: true
         }
@@ -32,7 +33,8 @@ class RestaurantCard extends Component
         const names = await getData('/ids')
         const rating = await getData(`/ratings/${names[this.props.restaurant]}`)
         const reviews = await getData(`/review/${names[this.props.restaurant]}`)
-        this.setState({ rating: rating.rating, reviews: JSON.parse(reviews), isLoading: false})
+        const info = await getData(`/restaurants/${names[this.props.restaurant]}`)
+        this.setState({ rating: rating.rating, reviews: JSON.parse(reviews), isLoading: false, info: info})
         // this.setState({ rating: rating, isLoading: false})
         // console.log(rating)
         // console.log(reviews)
@@ -50,6 +52,16 @@ class RestaurantCard extends Component
                 <Card.Header as="h5" style = {{color: "#ffffff"}}>{this.props.restaurant}</Card.Header>
                 <Card.Body>
                     <ListGroup className="list-group-flush">
+                        {
+                            this.state.info ? 
+                            <div>
+                                <ListGroupItem>{this.state.info.desc}</ListGroupItem>
+                                <ListGroupItem>{this.state.info.address}</ListGroupItem>
+                                <ListGroupItem>{this.state.info.hours}</ListGroupItem>
+                                <ListGroupItem><a href={this.state.info.link} style={{color: 'black'}}>{this.state.info.link}</a></ListGroupItem>
+                            </div> :
+                            null
+                        }
                         <ListGroupItem>Average Rating: {this.state.rating}</ListGroupItem>
                         {
                             console.log(this.state.reviews),
