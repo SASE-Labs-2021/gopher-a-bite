@@ -34,8 +34,8 @@ export default class AppMap extends Component {
     async componentWillMount() {
         // urls for the direction jsons
         var marker_urls;
-        const names = await getData('/ids');
-        marker_urls = Object.values(names).map(name => '/restaurants/' + name);
+        const names = await getData('https://gopher-a-bite.uc.r.appspot.com/ids');
+        marker_urls = Object.values(names).map(name => 'https://gopher-a-bite.uc.r.appspot.com/restaurants/' + name);
         console.log(marker_urls)
         marker_urls.forEach(url => {
             return fetch(url)

@@ -39,13 +39,13 @@ function RestaurantComponent() {
 
 export default function NavigationBar() {
     return ( <
-            Router >
+            Router basename={`${process.env.PUBLIC_URL}/`}>
             <
             div >
             <
             Navbar >
             <
-            Navbar.Brand > Gopher - A - Bite < /Navbar.Brand> <
+            Navbar.Brand href={`${process.env.PUBLIC_URL}`}> Gopher - A - Bite < /Navbar.Brand> <
             Nav >
             <
             Nav.Link href = "/" > Home < /Nav.Link> <

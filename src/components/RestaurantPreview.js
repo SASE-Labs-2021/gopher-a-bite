@@ -29,9 +29,9 @@ class RestaurantCard extends Component
     }
     
     async componentDidMount() {
-        const names = await getData('/ids')
-        const rating = await getData(`/ratings/${names[this.props.restaurant]}`)
-        const reviews = await getData(`/review/${names[this.props.restaurant]}`)
+        const names = await getData('https://gopher-a-bite.uc.r.appspot.com/ids')
+        const rating = await getData(`https://gopher-a-bite.uc.r.appspot.com/ratings/${names[this.props.restaurant]}`)
+        const reviews = await getData(`https://gopher-a-bite.uc.r.appspot.com/review/${names[this.props.restaurant]}`)
         this.setState({ rating: rating.rating, reviews: JSON.parse(reviews), isLoading: false})
         // this.setState({ rating: rating, isLoading: false})
         // console.log(rating)
