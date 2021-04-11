@@ -8,7 +8,6 @@ import SignIn from "./SignIn";
 import UserProvider from "../providers/UserProvider";
 import ProfilePage from "./ProfilePage";
 import { UserContext } from "../providers/UserProvider";
-import StarRating from './StarRating';
 import Intro from './Intro';
 import AppMap from './AppMap';
 import {
@@ -32,6 +31,11 @@ function ReviewsComponent() {
     />;
 }
 
+
+function RestaurantComponent() {
+    let query = useQuery()
+    return <RestaurantPreview restaurant={query.get('restaurant')}/>
+}
 
 export default function NavigationBar() {
     return ( <
@@ -87,6 +91,10 @@ var routes = [{
     {
         path: '/reviews',
         main: () => < ReviewsComponent / >
+    },
+    {
+        path: '/rest',
+        main: () => <RestaurantComponent/>
     }
 ]
 function Home() 
@@ -94,7 +102,6 @@ function Home()
   return (
     <div>
       <Intro/>
-      <RestaurantPreview/>
     </div>);
 }
 function Nearby() 

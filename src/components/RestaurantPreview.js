@@ -4,6 +4,9 @@ import Card from 'react-bootstrap/Card';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import { getData } from '../Shared';
+import Spinner from 'react-bootstrap/Spinner';
+import StarRatingComponent from 'react-star-rating-component';
 
 const white = {
     background: "#fff",
@@ -16,31 +19,57 @@ const white = {
 }
 class RestaurantCard extends Component 
 {
-    state = 
-    {  
-        name: "Chipotle",
-        rating: 5,
-        avgTime: 10,
-        tags: "Keto, Gluten-free"
-     }
+    constructor(props) {
+        super(props);
+        this.state = {
+            rating: 5,
+            reviews: [],
+            isLoading: true
+        }
+    }
+    
+    async componentDidMount() {
+        const names = await getData('/ids')
+        const rating = await getData(`/ratings/${names[this.props.restaurant]}`)
+        const reviews = await getData(`/review/${names[this.props.restaurant]}`)
+        this.setState({ rating: rating.rating, reviews: JSON.parse(reviews), isLoading: false})
+        // this.setState({ rating: rating, isLoading: false})
+        // console.log(rating)
+        // console.log(reviews)
+        console.log(this.state)
+    }
+
     render() 
     { 
+        if (this.state.isLoading) {
+            <Spinner/>
+        }
+
         return ( 
             <Card style={white}>
-                <Card.Header as="h5" style = {{color: "#ffffff"}}>Today's Restaurant Recommendation</Card.Header>
+                <Card.Header as="h5" style = {{color: "#ffffff"}}>{this.props.restaurant}</Card.Header>
                 <Card.Body>
-                    <Card.Title as = "h2">{this.state.name}</Card.Title>
-                    <Card.Text as = "h6"> 
-                    Lynh's favorite thing to get here is a steak salad bowl with their bomb *** vinegrette.
-                    Here we should have a little description on maybe what this restaurant is all about.
-                    BURRITOS
-                    </Card.Text>
                     <ListGroup className="list-group-flush">
-                        <ListGroupItem>Star Rating: {this.state.rating}</ListGroupItem>
-                        <ListGroupItem>Average Wait Time: {this.state.avgTime} minutes</ListGroupItem>
-                        <ListGroupItem>Tags: {this.state.tags}</ListGroupItem>
+                        <ListGroupItem>Average Rating: {this.state.rating}</ListGroupItem>
+                        {
+                            console.log(this.state.reviews),
+                            this.state.reviews.map(json => {
+                                return (
+                                    <div>
+                                        <h7>{json.user_id}</h7>
+                                        <br/>
+                                        <StarRatingComponent
+                                            name='rating'
+                                            startCount={parseInt(json.rating)}
+                                            value={parseInt(json.rating)}
+                                        />
+                                        <br/>
+                                        <p>"{json.review}"</p>
+                                    </div>
+                                )
+                            })
+                        }
                     </ListGroup>
-                    <Button variant="primary">More Info</Button>
                 </Card.Body>
             </Card>
          );
