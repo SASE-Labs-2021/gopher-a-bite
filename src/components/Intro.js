@@ -25,7 +25,7 @@ class Intro extends Component
     }
 
     async componentDidMount() {
-        const res = await getData('/recommendation/any_user') // change when real recommender system is implemented
+        const res = await getData('https://gopher-a-bite.uc.r.appspot.com/recommendation/any_user') // change when real recommender system is implemented
         console.log(res)
         const recommendations = Object.keys(res['rating']).map(key => key)
         recommendations.forEach(id => {
