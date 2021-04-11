@@ -96,7 +96,8 @@ export default class AppMap extends Component {
                         button > < Link to = {
                             `/reviews?restaurant=${json.restaurant}`
                         } > Review < /Link>< /button >
-
+                            <button><Link to={`/rest?restaurant=${json.restaurant}`}>
+                            Info</Link></button>
                         <
                         /
                         Popup > <
