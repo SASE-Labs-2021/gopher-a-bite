@@ -29,7 +29,7 @@ class Intro extends Component
         console.log(res)
         const recommendations = Object.keys(res['rating']).map(key => key)
         recommendations.forEach(id => {
-            return fetch(`/restaurants/${id}`)
+            return fetch(`https://gopher-a-bite.uc.r.appspot.com/restaurants/${id}`)
                 .then(res => res.json())
                 .then((resData) => {
                     this.setState(
